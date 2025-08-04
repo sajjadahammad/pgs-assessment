@@ -18,22 +18,16 @@ const schema = yup.object().shape({
 });
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate, error } = useMutation({
+  const { mutate,isPending, error } = useMutation({
     mutationFn: async (data) => {
       return await loginUser(data);
     },
     onSuccess: (data) => {
       queryClient.setQueryData(["login"], data);
       navigate("/");
-      setLoading(false);
-    },
-    onError: (error) => {
-      // Toast notification is handled in the API
-      setLoading(false);
     },
   });
 
@@ -46,7 +40,6 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    setLoading(true);
     mutate(data);
   };
 
@@ -54,7 +47,9 @@ export default function Login() {
     <div className='flex justify-center items-center h-screen'>
       <Card className='max-w-md w-full bg-zinc-900 rounded-3xl px-4'>
         <CardHeader>
-          <CardTitle className={'text-white align-middle font-bold text-2xl py-5'}><Diameter className="inline mr-2" />Demo Panel</CardTitle>
+          <CardTitle className={'text-white align-middle font-bold text-2xl py-5 flex items-center gap-2'}>  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <div className="w-4 h-4 bg-gray-900 rounded-full"></div>
+              </div>Demo Panel</CardTitle>
         </CardHeader>
         <CardContent className={'text-white'}>
           <h1 className="text-2xl font-medium">Log in to your account!</h1>
@@ -89,7 +84,7 @@ export default function Login() {
                 </div>
                 <a href="/forgot-password" className="text-zinc-500">Forgot password?</a>
               </div>
-              <Button type="submit"  className="w-full bg-white text-black py-6 font-semibold  hover:bg-white/80 cursor-pointer" disabled={loading}>Sign In to Account</Button>
+              <Button type="submit"  className="w-full bg-white text-black py-6 font-semibold  hover:bg-white/80 cursor-pointer" disabled={isPending}>{isPending ? "Signing in..." : "Sign In to Account"}</Button>
             </div>
           </form>
 
