@@ -22,6 +22,7 @@ export const routes = [
                 index: true,
                 element: <Home />
             },
+            
            
             // {
             //     path: "result",
