@@ -9,6 +9,7 @@ import { Link } from "react-router"
 import { Checkbox } from "@/components/ui/checkbox"
 import { signupUser } from "@/api"
 import { useNavigate } from "react-router"
+import TermsConditons from "@/components/TermsConditons"
 // Validation schema
 const schema = yup.object({
   fullName: yup.string().required("Full name is required"),
@@ -181,15 +182,15 @@ export default function SignupForm() {
             <div className="flex justify-between flex-col md:flex-row gap-4 mt-6">
               <div className="flex items-center gap-3  w-full">
                 <Checkbox
-                  {...register("acceptTerms")}
+                  {...register("acceptTerms", {
+                    setValueAs: (value) => value === "on" || value === true
+                  })}
                   type="checkbox"
                   className={' data-[state=checked]:text-white bg-white'}
                 />
                 <label className="text-zinc-500 text-sm">
                   I accept the{" "}
-                  <a href="#" className="text-white underline hover:text-blue-400">
-                    Terms & Conditions
-                  </a>
+                 <TermsConditons/>
                 </label>
               </div>
               {errors.acceptTerms && <p className="text-red-400 text-xs mt-1">{errors.acceptTerms.message}</p>}
