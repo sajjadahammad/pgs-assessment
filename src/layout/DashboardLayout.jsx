@@ -12,12 +12,14 @@ export default function DashboardLayout() {
     }
   },[navigate])
   return (
-    <div className="flex">
-           <Sidebar/>
-           <div className="flex-1 shrink-0  p-6">
-              <SiteHeader/>
-               <Outlet/>
-           </div>
-       </div>
+<div className="flex h-screen overflow-hidden">
+    <Sidebar/>
+    <div className="flex-1 shrink-0 p-6 flex flex-col overflow-hidden overflow-y-scroll">
+        <SiteHeader/>
+        <div className='pt-5 flex-1 '>
+            <Outlet/>
+        </div>
+    </div>
+</div>
   )
 }

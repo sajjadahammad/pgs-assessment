@@ -12,11 +12,11 @@ import { useNavigate } from "react-router"
 import TermsConditons from "@/components/TermsConditons"
 // Validation schema
 const schema = yup.object({
-  fullName: yup.string().required("Full name is required"),
+  name: yup.string().required("Full name is required"),
   username: yup.string().required("Username is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
-  confirmPassword: yup
+  password: yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
+  passwordConfirm: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
     .required("Confirm password is required"),
@@ -103,7 +103,7 @@ export default function SignupForm() {
               <div className="flex-1">
                 <label className="block text-white text-sm font-medium mb-2">Full Name</label>
                 <Input
-                  {...register("fullName")}
+                  {...register("name")}
                   type="text"
                   placeholder="Enter your full name"
                  
@@ -161,7 +161,7 @@ export default function SignupForm() {
                 <label className="block text-white text-sm font-medium mb-2">Confirm Password</label>
                 <div className="relative">
                   <Input
-                    {...register("confirmPassword")}
+                    {...register("passwordConfirm")}
                     type={showConfirmPassword ? "text" : "password"}
                     placeholder="Confirm password"
                    
@@ -174,7 +174,7 @@ export default function SignupForm() {
                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
-                {errors.confirmPassword && <p className="text-red-400 text-xs mt-1">{errors.confirmPassword.message}</p>}
+                {errors.passwordConfirm && <p className="text-red-400 text-xs mt-1">{errors.passwordConfirm.message}</p>}
               </div>
             </div>
 
@@ -198,7 +198,7 @@ export default function SignupForm() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full  bg-white text-gray-900 font-semibold py-3  rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed m"
+                className="w-full  bg-white text-gray-900 font-semibold py-3  rounded-lg hover:bg-gray-100 active:scale-95 transition-all duration-100 ease-in disabled:opacity-50 disabled:cursor-not-allowed m"
               >
                 {isPending ? "Creating Account..." : <p>Create Account <MoveRight className="inline"/></p>}
               </button>

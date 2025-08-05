@@ -84,7 +84,7 @@ export default function Login() {
                 </div>
                 <a href="/forgot-password" className="text-zinc-500">Forgot password?</a>
               </div>
-              <Button type="submit"  className="w-full bg-white text-black py-6 font-semibold  hover:bg-white/80 cursor-pointer" disabled={isPending}>{isPending ? "Signing in..." : "Sign In to Account"}</Button>
+              <Button type="submit"  className="w-full bg-white text-black py-6 font-semibold  hover:bg-white/80 cursor-pointer active:scale-95 transition-all duration-100 ease-in" disabled={isPending}>{isPending ? "Signing in..." : "Sign In to Account"}</Button>
             </div>
           </form>
 
