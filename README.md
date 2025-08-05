@@ -45,7 +45,7 @@ To get started with this project, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/sajjadahammad/pgs-assessment.git
    ```
 
 2. **Install dependencies:**
@@ -59,7 +59,7 @@ To get started with this project, follow these steps:
    Create a `.env` file in the root directory of the project and add the following environment variables:
 
    ```
-   VITE_BASE_URL=http://localhost:8090
+   VITE_BASE_URL=http://localhost:8090 or hosted link given in teh assessment
    ```
 
 4. **Start the PocketBase server:**
